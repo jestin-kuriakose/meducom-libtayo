@@ -11,6 +11,7 @@ import {
 
 import { useSelector } from 'react-redux';
 import LoginPage from './pages/LoginPage';
+import Comments from './pages/Comments';
 
 
 function App() {
@@ -21,7 +22,12 @@ function App() {
       <Routes>
         <Route path='/' element={cUser ? <Home/> : <LoginPage/>}/>
         
-        { <Route path='/posts' element={cUser ? <Posts/>: <Home/>}/> }
+        <Route path='/posts' element={cUser ? <Posts/>: <Home/>}/>
+
+        <Route path='/login' element={<LoginPage/>}/>
+
+        <Route path='/comments' element={<Comments/>}/>
+
       </Routes>
     </Router>
   );

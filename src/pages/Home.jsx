@@ -14,13 +14,13 @@ const Container = styled.div`
     background-size: cover;
 `
 
-const Meducom = () => {
+const Home = () => {
     const {isFetching, error} = useSelector((state)=>state.user)
 
     const user = useSelector((state)=> state.user)
     const cUser = user.currentUser === null;
     const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser === null
-    console.log("Token-" + TOKEN)
+    console.log(JSON.parse(localStorage.getItem("persist:root")))
   return (
     <div>
     <TopNav/>
@@ -33,4 +33,4 @@ const Meducom = () => {
   )
 }
 
-export default Meducom
+export default Home

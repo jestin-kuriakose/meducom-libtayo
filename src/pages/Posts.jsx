@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import TopNav from '../components/TopNav'
 import styled from 'styled-components'
 import { userRequest } from '../requestMethods'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import Forums from '../components/Forums'
+import Forum from '../components/Forum'
 
 const Container = styled.div`
     widTh: 100vw;
@@ -23,14 +27,25 @@ border: 1px solid #ddd;
 
 const Posts = () => {
     const [users, setUsers] = useState([])
+    const navigate = useNavigate()
+    const {isFetching, error} = useSelector((state)=>state.user)
+
+    const user = useSelector((state)=> state.user)
+    const cUser = user.currentUser ? user.currentUser : false;
 
     useEffect(()=> {
+    
         const getUsers = async () => {
+            if(cUser) {
+
             try {
                 const res = await userRequest.get(`/users`)
                 setUsers(res.data)
             } catch(err) {
                 console.log(err)
+            }
+            } else {
+                navigate('/login')
             }
         }
         getUsers()
@@ -41,28 +56,9 @@ const Posts = () => {
     <div>
         <TopNav/>
         <Container>
-        <Table id="cases">
-            <tr>
-                <Th>Date</Th>
-                <Th>Location</Th>
-                <Th>Speaker</Th>
-                <Th>Status</Th>
-                <Th>Created by</Th>
-                <Th>Created Date</Th>
-                <Th>Session URL</Th>
-                <Th>Action</Th>
-            </tr>
-             {users.map((user) => 
-            <tr id={user.id}>
-                <Td>01/05/2022</Td>
-                <Td>{user.city}</Td>
-                <Td>{user.firstname} {user.lastname}</Td>
-                <Td>Completed</Td>
-                <Td>01/05/2022</Td>
-                <Td>{user.firstname} {user.lastname}</Td>
-            </tr>
-            )}
-        </Table>
+            <Forums>
+                <Forum></Forum>
+            </Forums>
         </Container>
     </div>
   )

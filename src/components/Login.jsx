@@ -108,7 +108,7 @@ const Login = () => {
     <Form>
         <Input disabled={cUser ? true:false} placeholder="username/email" onChange={(e)=>setUsername(e.target.value)}/>
         <Input disabled={cUser ? true:false} placeholder="Password" type="password" onChange={(e)=>setPassword(e.target.value)}/>
-        <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
+        <Button onClick={handleClick} disabled={isFetching || cUser}>LOGIN</Button>
 
         { error && <p>Please check your credentials</p>}
         

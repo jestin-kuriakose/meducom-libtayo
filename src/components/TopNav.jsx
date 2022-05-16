@@ -1,18 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { logout } from '../redux/apiCalls'
 
 
 
 const Container = styled.div`
-    
+    align-items: center;
+    justify-content: center;
 `
 const Button = styled.button`
-    width: 40%;
+    width: 10%;
     border: none;
     padding: 15px 20px;
+    margin: 0 20px;
     background-color: #164589;
     color: white;
     cursor: pointer;
@@ -46,6 +48,10 @@ const TopNav = () => {
             <Image src='https://i.ibb.co/K95LPkx/image.jpg'/>
             {cUser && <Button onClick={handleLogout}>LOGOUT</Button>}
         </Container>
+        <Link to={'/'}><Button>Home</Button></Link>
+        <Link to={'/posts'}><Button>Posts</Button></Link>
+        <Link to={'/login'}><Button>Login</Button></Link>
+
     </div>
   )
 }
