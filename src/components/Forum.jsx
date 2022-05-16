@@ -9,11 +9,7 @@ const Comment = styled.a`
 `
 
 const Forum = ({forum}) => {
-    const [toggleComment, setToggleComment] = useState(false)
-    const handleComments = (e) => {
-        toggleComment ? setToggleComment(false) : setToggleComment(true)
-        
-    }
+    
     console.log(forum._id)
   return (
     <div>

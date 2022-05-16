@@ -26,7 +26,7 @@ function App() {
 
         <Route path='/login' element={<LoginPage/>}/>
 
-        <Route path='/comments' element={<Comments/>}/>
+        <Route path='/comments/:forumId' element={<Comments/>}/>
 
       </Routes>
     </Router>
