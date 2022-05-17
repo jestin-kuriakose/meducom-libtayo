@@ -55,31 +55,34 @@ const Comments = () => {
             try {
                 const res = await userRequest.get(`/forums/find/${forumId}`)
                 setForum(res.data)
+                
             } catch(err) {
 
             }
             
         }
         getForum()
-    }, [])
-    // console.log(forum)
+    }, [newComment])
+    console.log(forum)
 
     const handleChange = (e) => {
-      setNewComment((prev) => [...prev, {comments : e.target.value}])
+      setNewComment([{comments: e.target.value}])
     }
     console.log(newComment)
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
       e.preventDefault();
       try {
-        
-        const res = userRequest.put(`/forums/${forumId}`, {
-          comments: newComment
+        const updForum = newComment.concat(forum.comments)
+        console.log(updForum)
+        const res = await userRequest.put(`/forums/${forumId}`, {
+          comments: updForum
         })
-        console.log(res)
+        console.log(res.data)
       } catch (err) {}
       
     }
+    
   return (
     <div>
     <TopNav/>
